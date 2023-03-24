@@ -52,6 +52,9 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         {
             error_m.SetActive(false);
         }
+
+        Debug.Log(PhotonNetwork.PlayerList.Length);
+
        
         foreach (Player p in PhotonNetwork.PlayerList)
         {
@@ -82,6 +85,18 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LeaveRoom();
     }
+    
+    public void OnClickStart_button()
+    {
+        SceneManager.LoadScene("game");
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+      
+     Destroy(prefabname.gameObject);
+       
+    }
 
     public override void OnLeftRoom()
     {
@@ -92,7 +107,8 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         lobby.SetActive(false);
         after_connection.SetActive(true);
     }
-
+     
+   
 
     public override void OnConnectedToMaster()
     {
