@@ -88,7 +88,8 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     
     public void OnClickStart_button()
     {
-        SceneManager.LoadScene("game");
+        PhotonNetwork.LoadLevel("game");
+        //SceneManager.LoadScene("game");
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
