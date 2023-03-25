@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class player_movement : MonoBehaviour
 {
-    public float speed = 1000f;
+    public float speed ;
     private Rigidbody player;
     Vector3 lastpos;
 
@@ -24,7 +24,7 @@ public class player_movement : MonoBehaviour
         if (view.IsMine)
         {
         lastpos = player.transform.position;
-                if (Input.GetKeyDown(KeyCode.Space) )
+                if (Input.GetKeyDown(KeyCode.Return) )
                 {
                     if (player.velocity== Vector3.zero)
                     {

@@ -10,7 +10,7 @@ public class ground_gen : MonoBehaviour
     public GameObject end_pnt2;
     
     public GameObject platform2;
-    private float timegen=3;
+    private float timegen=10f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +24,10 @@ public class ground_gen : MonoBehaviour
        if (timegen<=0)
         {
             Instantiate(platform2, end_pnt2.transform.position, Quaternion.identity);
-            timegen = 3;
+            timegen = 10f;
            
         }
-        Destroy(platform2, 4f);
+        Destroy(platform2, 15f);
 
     }
 
