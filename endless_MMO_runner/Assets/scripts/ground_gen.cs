@@ -32,6 +32,6 @@ public class ground_gen : MonoBehaviour
     }
 
     
-    
+   
 
 }
