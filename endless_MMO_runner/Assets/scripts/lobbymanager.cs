@@ -20,6 +20,9 @@ public class lobbymanager : MonoBehaviourPunCallbacks
     public TMP_Text prefabname;
     public GameObject start_btn;
     public GameObject error_m;
+
+    List<TMP_Text> prefablist = new List<TMP_Text>(); 
+
    
 
     private void Start()
@@ -56,17 +59,28 @@ public class lobbymanager : MonoBehaviourPunCallbacks
 
         Debug.Log(PhotonNetwork.PlayerList.Length);
 
-       
-        foreach (Player p in PhotonNetwork.PlayerList)
-        {
-
-           TMP_Text nick = Instantiate(prefabname, content);
-            nick.text = p.NickName;
-        }
+        UpdateplayerList();
     
 
 }
 
+    void UpdateplayerList()
+    {
+        foreach( TMP_Text j in prefablist)
+        {
+            Destroy(j.gameObject);
+        }
+        prefablist.Clear();
+
+        foreach (Player p in PhotonNetwork.PlayerList)
+        {
+
+            TMP_Text nick = Instantiate(prefabname, content);
+            nick.text = p.NickName;
+            prefablist.Add(nick);
+        }
+
+    }
 
     public void OnClickJoin()
     {
@@ -93,10 +107,14 @@ public class lobbymanager : MonoBehaviourPunCallbacks
         //SceneManager.LoadScene("game");
     }
 
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        UpdateplayerList();
+    }
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
       
-     Destroy(prefabname.gameObject);
+     UpdateplayerList();
        
     }
 
